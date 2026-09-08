@@ -1,22 +1,23 @@
 workflows:
-  android-preview:
-    name: Tosheh Akherat Android Preview
+  android-workflow:
+    name: Tosheh Akherat Android
+    max_build_duration: 60
 
     environment:
       flutter: stable
 
     scripts:
-      - name: Generate Android project
+      - name: Ensure Android platform files
         script: |
-          if [ ! -d "android" ]; then
-            flutter create --platforms=android --project-name=tosheh_akhirat .
-          fi
+          flutter create --platforms=android --org com.quraishe .
 
       - name: Get Flutter packages
-        script: flutter pub get
+        script: |
+          flutter pub get
 
-      - name: Build Debug APK
-        script: flutter build apk --debug
+      - name: Build APK
+        script: |
+          flutter build apk --release
 
     artifacts:
-      - build/app/outputs/flutter-apk/app-debug.apk
+      - build/**/outputs/**/*.apk
