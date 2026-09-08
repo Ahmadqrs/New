@@ -6,6 +6,12 @@ workflows:
       flutter: stable
 
     scripts:
+      - name: Generate Android project
+        script: |
+          if [ ! -d "android" ]; then
+            flutter create --platforms=android --project-name=tosheh_akhirat .
+          fi
+
       - name: Get Flutter packages
         script: flutter pub get
 
