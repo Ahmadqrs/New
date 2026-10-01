@@ -1,26 +1,18 @@
-name: tosheh_akhirat
-description: اپلیکیشن توشه آخرت
-publish_to: "none"
-
+name: tosha_quran
+description: قرآن کریم با ترجمه و صوت
+publish_to: none
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.4.0 <4.0.0"
+  sdk: ^3.3.0
 
 dependencies:
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.8
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-  flutter_lints: ^5.0.0
+  http: ^1.2.0
+  just_audio: ^0.9.40
+  google_fonts: ^6.2.1
+  shared_preferences: ^2.2.3
 
 flutter:
   uses-material-design: true
-
-  assets:
-    - assets/book.db.gz

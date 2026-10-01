@@ -1,23 +1,24 @@
 workflows:
-  android-workflow:
-    name: Tosheh Akherat Android
-    max_build_duration: 60
-
+  android-release:
+    name: Android APK
+    instance_type: linux_x2
+    max_build_duration: 30
     environment:
       flutter: stable
-
     scripts:
-      - name: Ensure Android platform files
+      - name: Create Android project files
         script: |
-          flutter create --platforms=android --org com.quraishe .
-
-      - name: Get Flutter packages
+          flutter create . --platforms=android --project-name tosha_quran --org com.tosha
+          rm -rf test
+      - name: Add INTERNET permission
         script: |
-          flutter pub get
-
+          MANIFEST=android/app/src/main/AndroidManifest.xml
+          if ! grep -q "android.permission.INTERNET" "$MANIFEST"; then
+            sed -i 's|<application|<uses-permission android:name="android.permission.INTERNET"/>\n    <application|' "$MANIFEST"
+          fi
+      - name: Get packages
+        script: flutter pub get
       - name: Build APK
-        script: |
-          flutter build apk --release
-
+        script: flutter build apk --release
     artifacts:
-      - build/**/outputs/**/*.apk
+      - build/app/outputs/flutter-apk/*.apk
