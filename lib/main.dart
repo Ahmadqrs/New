@@ -215,9 +215,11 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (_, i) {
                   final c = list[i];
                   return ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      shape: const CircleBorder(side: BorderSide(color: gold)),
+                    leading: Container(
+                      width: 40,
+                      height: 40,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: gold)),
                       child: Text('${c['id']}', style: const TextStyle(color: gold, fontSize: 13)),
                     ),
                     title: Text(c['name_arabic'], style: GoogleFonts.amiriQuran(fontSize: 24)),
